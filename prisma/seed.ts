@@ -3,6 +3,7 @@
  * Run: npx prisma db seed
  */
 import bcrypt from "bcryptjs";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma";
 
 const DEMO_EMAIL = "demo@stockflow.local";
@@ -10,7 +11,12 @@ const DEMO_PASSWORD = "DemoPass123!";
 const ORG_NAME = "Demo Store";
 
 async function main() {
-  const prisma = new PrismaClient();
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error("DATABASE_URL is required for seeding.");
+  }
+  const adapter = new PrismaPg({ connectionString });
+  const prisma = new PrismaClient({ adapter });
 
   const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 10);
 
