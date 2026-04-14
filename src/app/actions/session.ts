@@ -1,10 +1,10 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/session";
 
-export default async function Home() {
+export async function logout() {
   const session = await getSession();
-  if (session.userId) {
-    redirect("/dashboard");
-  }
+  session.destroy();
   redirect("/login");
 }
