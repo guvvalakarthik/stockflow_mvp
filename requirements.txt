@@ -1,0 +1,11 @@
+# This repository is a Node.js/Next.js project (not a Python project).
+# Python requirements are not applicable.
+# Main runtime/development dependencies are managed in package.json:
+# - next 16.2.3
+# - react 19.2.4
+# - react-dom 19.2.4
+# - @prisma/client 7.7.0
+# - prisma 7.7.0
+# - bcryptjs 3.0.3
+# - iron-session 8.0.4
+# - zod 4.3.6
